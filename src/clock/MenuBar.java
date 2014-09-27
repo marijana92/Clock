@@ -75,7 +75,16 @@ public class MenuBar
 
     public void chackBoxClick(ActionEvent e)
     {
-        
+        if(((JCheckBoxMenuItem)e.getSource()).getText() == "Analog")
+        {
+            getJcbAnalog().setSelected(true);
+            getJcbDigital().setSelected(false);  
+        }
+        else
+        {
+            getJcbDigital().setSelected(true);
+            getJcbAnalog().setSelected(false);
+        }
     }
 
     public void exitClick()
