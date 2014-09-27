@@ -89,7 +89,9 @@ public class MenuBar
 
     public void exitClick()
     {
-        
+        this.getBoardAnalog().stop();
+        this.getBoardDigital().stop();
+        System.exit(0);
     }
     
     /**

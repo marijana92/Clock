@@ -18,12 +18,18 @@ public class Frame extends JFrame
     
     public Frame() 
     {
+        /*
+        Kreiranje i dodavanje analognog sata na frame.
+        */
         boardAnalog = new BoardAnalog();
         add(boardAnalog);
         
         boardDigital = new BoardDigital();
         
         MenuBar myMenu = new MenuBar(boardAnalog, boardDigital);
+        /*
+        Postavljanje meni na frame-u.
+        */
         this.setJMenuBar(myMenu.getMenuBar());
         
         frameSettings();
@@ -36,17 +42,23 @@ public class Frame extends JFrame
     private void frameSettings() 
     {
         this.setTitle("Clock");
+        /*
+        Program se uobičajno zatvara na dugme X.
+        */
         this.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         this.setResizable(true);
         this.setType(Type.NORMAL);
 
-        Dimension dimensionWindow = new Dimension(400, 400);
+        Dimension dimensionWindow = new Dimension(500, 400);
 
         this.setSize(500, 400);
         this.setMinimumSize(new Dimension(400, 400));
 
+        /*
+        Pristupa se nekim osnovnim svojstvima same mašine na kome izvršava program.
+        */
         Toolkit tkDimension = Toolkit.getDefaultToolkit();
-        Dimension dimensionScrean = tkDimension.getScreenSize();
+        Dimension dimensionScrean = tkDimension.getScreenSize(); //uzimaju se dužina i širina ekrana radi postavljanja prozora na sredinu ekrana
 
         this.setLocation(dimensionScrean.width / 2 - dimensionWindow.width / 2,
                 dimensionScrean.height / 2 - dimensionWindow.height / 2);

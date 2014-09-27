@@ -7,6 +7,8 @@ import java.awt.Toolkit;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JPanel;
 
 /**
@@ -14,8 +16,15 @@ import javax.swing.JPanel;
  * @author Marijana
  */
 
+/*
+Uključujemo interface Runnable radi niti. Zato što se nešto deševa, svaki sekund imamo neku promjenu.
+*/
+
 public class BoardAnalog extends JPanel implements Runnable
 {
+    /*
+    Sat radi na principu niti jer se svake sekunde desi promjena.
+    */
     Thread thread = null;
     SimpleDateFormat formatter = new SimpleDateFormat("s", Locale.getDefault());
     Date currentDate;
@@ -47,8 +56,9 @@ public class BoardAnalog extends JPanel implements Runnable
             {
                 Thread.sleep(1000);
             } 
-            catch (InterruptedException e) 
+            catch (InterruptedException ex) 
             {
+                Logger.getLogger(BoardAnalog.class.getName()).log(Level.SEVERE, null, ex);
             }
             
             repaint();
@@ -67,7 +77,6 @@ public class BoardAnalog extends JPanel implements Runnable
         g.setFont(new Font("Kristen ITC", Font.PLAIN, 20));
         g.setColor(Color.BLACK);
         g.fillOval(xcenter - 150, ycenter - 150, 300, 300);
-        g.setColor(Color.blue);
         
         g.setColor(Color.RED);
         g.setFont(new Font("Kristen ITC", Font.BOLD, 25));
@@ -85,9 +94,9 @@ public class BoardAnalog extends JPanel implements Runnable
         int xhour, yhour, xminute, yminute, xsecond, ysecond, second, minute, hour;
         drawStructure(g);
 
-        currentDate = new Date();
+        currentDate = new Date(); //automacki učitavnaje lokalnog vremena
         
-        formatter.applyPattern("s");
+        formatter.applyPattern("s"); //primjenjivanje formatera za sekunde
         second = Integer.parseInt(formatter.format(currentDate));
         
         formatter.applyPattern("m");
@@ -108,7 +117,7 @@ public class BoardAnalog extends JPanel implements Runnable
                 / 2) * 80 + ycenter);
         
         g.setColor(Color.magenta);
-        g.drawLine(xcenter, ycenter, xsecond, ysecond);
+        g.drawLine(xcenter, ycenter, xsecond, ysecond); //iscrtavanje sekundarice
 
         g.setColor(Color.red);
         g.drawLine(xcenter, ycenter - 1, xminute, yminute);
@@ -119,7 +128,7 @@ public class BoardAnalog extends JPanel implements Runnable
         // Sinhronizovanje sa grafičkom kartom
         Toolkit.getDefaultToolkit().sync();
 
-        // Optimizacija upotrebe RAM-a, 
+        // Optimizacija upotrebe RAM-a
         g.dispose();
     }
     
