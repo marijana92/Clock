@@ -11,8 +11,6 @@ import javax.swing.JMenuItem;
  *
  * @author Marijana
  */
-
-
 public class MenuBar 
 {
     private JMenuBar menuBar;
@@ -79,11 +77,17 @@ public class MenuBar
         {
             getJcbAnalog().setSelected(true);
             getJcbDigital().setSelected(false);  
+            
+            this.getBoardDigital().stop();
+            this.getFrameMain().remove(this.getBoardDigital());
         }
         else
         {
             getJcbDigital().setSelected(true);
             getJcbAnalog().setSelected(false);
+            
+            this.getBoardAnalog().stop();
+            this.getFrameMain().remove(this.getBoardAnalog());
         }
     }
 
