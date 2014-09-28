@@ -80,6 +80,9 @@ public class MenuBar
             
             this.getBoardDigital().stop();
             this.getFrameMain().remove(this.getBoardDigital());
+            
+            this.getFrameMain().add(this.getBoardAnalog());
+            this.getBoardAnalog().start();
         }
         else
         {
@@ -88,6 +91,9 @@ public class MenuBar
             
             this.getBoardAnalog().stop();
             this.getFrameMain().remove(this.getBoardAnalog());
+            
+            this.getFrameMain().add(this.getBoardDigital());
+            this.getBoardDigital().start();
         }
     }
 
