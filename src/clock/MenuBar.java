@@ -76,12 +76,14 @@ public class MenuBar
         if(((JCheckBoxMenuItem)e.getSource()).getText() == "Analog")
         {
             getJcbAnalog().setSelected(true);
-            getJcbDigital().setSelected(false);  
+            getJcbDigital().setSelected(false);
             
             this.getBoardDigital().stop();
             this.getFrameMain().remove(this.getBoardDigital());
+            this.getFrameMain().invalidate();
             
             this.getFrameMain().add(this.getBoardAnalog());
+            this.getFrameMain().validate();
             this.getBoardAnalog().start();
         }
         else
@@ -91,8 +93,10 @@ public class MenuBar
             
             this.getBoardAnalog().stop();
             this.getFrameMain().remove(this.getBoardAnalog());
+            this.getFrameMain().invalidate();
             
             this.getFrameMain().add(this.getBoardDigital());
+            this.getFrameMain().validate();
             this.getBoardDigital().start();
         }
     }
