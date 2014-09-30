@@ -16,6 +16,14 @@ public class Frame extends JFrame
     private BoardAnalog boardAnalog;
     private BoardDigital boardDigital;
     
+    /**
+     * Osnovni konstruktor za kreiranje glavnog prozora.
+     * Kreira satove
+     * @see #boardAnalog analogni sat
+     * @see #boardDigital digitalni sat.
+     * 
+     * Postavlja se odmah na pocetnu analogni sat.
+     */
     public Frame() 
     {
         /*
@@ -39,6 +47,9 @@ public class Frame extends JFrame
         boardAnalog.start();
     }
 
+    /**
+     * Funkcija vrsi inicijalizaciju osnovnih parametara prozora.
+     */
     private void frameSettings() 
     {
         this.setTitle("Clock");
@@ -46,13 +57,13 @@ public class Frame extends JFrame
         Program se uobičajno zatvara na dugme X.
         */
         this.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-        this.setResizable(true);
+        this.setResizable(true); //korisnik moze prozoru da mjenja velicinu
         this.setType(Type.NORMAL);
 
-        Dimension dimensionWindow = new Dimension(500, 400);
+        Dimension dimensionWindow = new Dimension(400, 400);
 
-        this.setSize(500, 400);
-        this.setMinimumSize(new Dimension(400, 400));
+        this.setSize(400, 400); //postavljamo osnovnu velicinu prozora
+        this.setMinimumSize(new Dimension(400, 400)); //postavljamo minimalnu velicinu prozora
 
         /*
         Pristupa se nekim osnovnim svojstvima same mašine na kome izvršava program.
@@ -64,6 +75,9 @@ public class Frame extends JFrame
                 dimensionScrean.height / 2 - dimensionWindow.height / 2);
 
         this.pack();
+        /*
+        Postavljamo ikonicu prozora.
+        */
         this.setIconImage(new ImageIcon("src/Content/clock.png").getImage());
         this.setVisible(true);
     }
