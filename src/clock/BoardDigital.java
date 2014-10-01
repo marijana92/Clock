@@ -8,6 +8,8 @@ import java.awt.Toolkit;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JPanel;
 
 /**
@@ -22,32 +24,23 @@ public class BoardDigital extends JPanel implements Runnable
     SimpleDateFormat formatter = new SimpleDateFormat("s", Locale.getDefault());
     Date currentDate;
     
-    public BoardDigital()
-    {
-    }
-    
     @Override
     public void run() 
     {
          while (thread != null) 
         {
-            try 
-            {
-                Thread.sleep(1000);
-            } 
-            catch (InterruptedException e) 
-            {
-            }
+             try 
+             {
+                 Thread.sleep(1000);
+             } 
+             catch (InterruptedException ex) 
+             {
+                 Logger.getLogger(BoardDigital.class.getName()).log(Level.SEVERE, null, ex);
+             }
             
             repaint();
         }
         thread = null;
-    }
-    
-    @Override
-    public void update(Graphics g)
-    {
-        paint(g);
     }
     
     public void start() 
