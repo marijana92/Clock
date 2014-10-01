@@ -27,18 +27,18 @@ public class BoardDigital extends JPanel implements Runnable
     @Override
     public void run() 
     {
-         while (thread != null) 
+        while (thread != null) 
         {
-             try 
-             {
-                 Thread.sleep(1000);
-             } 
-             catch (InterruptedException ex) 
-             {
-                 Logger.getLogger(BoardDigital.class.getName()).log(Level.SEVERE, null, ex);
-             }
-            
-            repaint();
+            try 
+            {
+                Thread.sleep(1000);
+                
+                repaint();
+            } 
+            catch (InterruptedException ex) 
+            {
+                Logger.getLogger(BoardDigital.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
         thread = null;
     }
