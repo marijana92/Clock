@@ -12,14 +12,10 @@ import java.util.logging.Logger;
 import javax.swing.JPanel;
 
 /**
- *
+ *Uključujemo interface Runnable radi niti. Zato što se nešto deševa, svaki sekund imamo neku promjenu.
+ * 
  * @author Marijana
  */
-
-/*
-Uključujemo interface Runnable radi niti. Zato što se nešto deševa, svaki sekund imamo neku promjenu.
-*/
-
 public class BoardAnalog extends JPanel implements Runnable
 {
     /*
@@ -32,7 +28,7 @@ public class BoardAnalog extends JPanel implements Runnable
     
     /**
      * Funkcija startuje izvrsavanje niti za klasu
-     * @see BoardAnalog.
+     * @see BoardAnalog
      */
     public void start() 
     {

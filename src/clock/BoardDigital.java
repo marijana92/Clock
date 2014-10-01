@@ -13,17 +13,22 @@ import java.util.logging.Logger;
 import javax.swing.JPanel;
 
 /**
- *
+ *Uključujemo interface Runnable radi niti. Zato što se nešto deševa, svaki sekund imamo neku promjenu.
+ * 
  * @author Marijana
  */
-
-
 public class BoardDigital extends JPanel implements Runnable
 {
+     /*
+    Sat radi na principu niti jer se svake sekunde desi promjena.
+    */
     Thread thread = null;
     SimpleDateFormat formatter = new SimpleDateFormat("s", Locale.getDefault());
     Date currentDate;
     
+    /**
+     * Dogadja koji se desava kad je pokrenuto izvrsavanje niti.
+     */
     @Override
     public void run() 
     {
@@ -31,9 +36,8 @@ public class BoardDigital extends JPanel implements Runnable
         {
             try 
             {
-                Thread.sleep(1000);
-                
-                repaint();
+                Thread.sleep(1000);//stopiramo izvrsavanje programa za 1 sekundu
+                repaint(); //ponovno iscrtavanje, idemo na metodu paint
             } 
             catch (InterruptedException ex) 
             {
@@ -43,6 +47,10 @@ public class BoardDigital extends JPanel implements Runnable
         thread = null;
     }
     
+    /**
+     * Funkcija startuje izvrsavanje niti za klasu
+     * @see BoardAnalog
+     */
     public void start() 
     {
         if (thread == null) 
@@ -52,11 +60,21 @@ public class BoardDigital extends JPanel implements Runnable
         }
     }
 
+    /**
+     * Funkcija postavlja vrijednost niti
+     * @see #thread na null.
+     */
     public void stop() 
     {
         thread = null;
     }
     
+    /**
+     * Funkcija kreira osnovnu strukturu sata.
+     * Postavlja boju, crta oblik, i postvlja cetri broja, 3, 6, 9 i 12.
+     * 
+     * @param g objekat klase koji u sebi sadrzi funkcije za crtanje
+     */
     @Override
     public void paint(Graphics g)
     {
@@ -64,22 +82,23 @@ public class BoardDigital extends JPanel implements Runnable
         
         super.paint(g);
         
-        currentDate = new Date();
-        formatter.applyPattern("s");
-
+        currentDate = new Date();//automacki učitavnaje lokalnog vremena
+        
+        formatter.applyPattern("s"); //primjenjivanje formatera za sekunde
         second = Integer.parseInt(formatter.format(currentDate));
-        formatter.applyPattern("m");
-
+        
+        formatter.applyPattern("m"); //primjenjivanje formatera za minute
         minute = Integer.parseInt(formatter.format(currentDate));
-        formatter.applyPattern("h");
+        
+        formatter.applyPattern("h"); //primjenjivanje formatera za sate
         hour = Integer.parseInt(formatter.format(currentDate));
         
-        Dimension d = getSize();
-        FontMetrics fm = g.getFontMetrics();
-        String time = hour + ":" + minute + ":" + second;
+        Dimension d = getSize(); //uzimamo trenutne dimenzije naseg prozora od programa
+        FontMetrics fm = g.getFontMetrics(); //uzimamo metriku od fonta
+        String time = hour + ":" + minute + ":" + second; //formiramo string koji cemo ispisati
         
-        g.setColor(new Color(0, 165, 255));
-        g.drawString(time, d.width/2 - fm.stringWidth(time) / 2, d.height/2 + fm.getDescent());
+        g.setColor(new Color(0, 165, 255)); //postavljamo boju stringa
+        g.drawString(time, d.width/2 - fm.stringWidth(time) / 2, d.height/2 + fm.getDescent()); //ispisujemo string na sredinu ekrana
 
         // Sinhronizovanje sa grafičkom kartom
         Toolkit.getDefaultToolkit().sync();

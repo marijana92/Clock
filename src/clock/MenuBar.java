@@ -88,7 +88,7 @@ public class MenuBar
      * postavlja analogni ili digitalni sat na glavni
      * @see #frameMain prozor.
      * 
-     * @param e 
+     * @param e daje informacije o događaju i njegovom izvoru
      */
     public void chackBoxClick(ActionEvent e)
     {
