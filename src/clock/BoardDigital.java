@@ -2,6 +2,7 @@ package clock;
 
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.FontMetrics;
 import java.awt.Graphics;
 import java.awt.Toolkit;
@@ -93,6 +94,7 @@ public class BoardDigital extends JPanel implements Runnable
         formatter.applyPattern("h"); //primjenjivanje formatera za sate
         hour = Integer.parseInt(formatter.format(currentDate));
         
+        g.setFont(new Font("Arial", Font.BOLD, 30));
         Dimension d = getSize(); //uzimamo trenutne dimenzije naseg prozora od programa
         FontMetrics fm = g.getFontMetrics(); //uzimamo metriku od fonta
         String time = hour + ":" + minute + ":" + second; //formiramo string koji cemo ispisati
