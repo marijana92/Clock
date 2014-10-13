@@ -89,6 +89,19 @@ public class BoardAnalog extends JPanel implements Runnable
         g.drawString("3", xcenter + 135, ycenter + 10);  //ispisujemo 3
         g.drawString("6", xcenter - 10, ycenter + 145);  //ispisujemo 6
         g.drawString("9", xcenter - 145, ycenter + 10);  //ispisujemo 9
+        
+        g.setColor(Color.green);
+        g.drawString("1", 219 + 20, 108 - 48);
+        g.drawString("2", 244 + 45, 135 - 15); 
+        
+        g.drawString("4", 244 + 45, ycenter + 75);
+        g.drawString("5", 219 + 20, ycenter + 125);
+        
+        g.drawString("7", 100, ycenter + 125);
+        g.drawString("8", 45, ycenter + 75);
+        
+        g.drawString("10", 45, 135 - 15);
+        g.drawString("11", 100, 108 - 48);
     }
     
     /**
